@@ -145,12 +145,12 @@
     <header id="top" class="header animated slideInUp">
       <div id="title" class="container">
         <h1 id="title">
-          MONEY SPENT.<br>
-          <span id="gray">ON THE</span> <br>
-          <span id="red">WAR ON DRUGS.</span><br>
-          <span id="gray">THIS YEAR.</span> <br>
-          $11,185,069,129.00
-          <span id="agreen">//Every Second +$500</span>
+                          MONEY SPENT.<br>
+          <span id="gray">ON THE</span><br>
+          <span id="red"> WAR ON DRUGS.</span><br>
+          <span id="gray">THIS YEAR.</span><br>
+          <br>
+          <span id="agreen">// +$500 / Second</span>
             <!-- //$11,185,069,129.00 -->
             <script>
 
@@ -166,13 +166,47 @@
             // unixTimestampa /= 1000;
             // document.getElementById("agreen").innerHTML = "//"+unixTimestampa;
             //
+
+            var hundreds = 129;
+            var thousands = 69;
+            var millions = 185;
+            var billions = 11;
+
             var numberOfb = 11185069129.00;
               setTimeout(function(){window.setInterval(
+
               function () {
-                numberOfb = numberOfb + 500;
-                document.getElementById("agreen").innerHTML = "//$"+numberOfb+".00";
+                //numberOfb = numberOfb + 500;
+                hundreds=hundreds+500;
+                if( hundreds > 999 ){
+                  hundreds = hundreds-1000;
+                  thousands = thousands+1;
+                }
+                if( thousands > 999 ){
+                  thousands = thousands-1000;
+                  millions = millions+1;
+                }
+                if( millions > 999 ){
+                  millions = millions-1000;
+                  billions = billions+1;
+                }
+
+                var num = function(){
+                  if( thousands > 99){
+                    return "//$"+billions+','+millions+','+thousands+','+hundreds+".00";
+                  }
+                  if( thousands < 10) {
+                    return "//$"+billions+','+millions+',00'+thousands+','+hundreds+".00";
+                  }
+                  if( thousands < 100) {
+                    return "//$"+billions+','+millions+',0'+thousands+','+hundreds+".00";
+                  }
+                }
+
+                document.getElementById("agreen").innerHTML =
+                num();
             }, 1000)}
-            ,5000);
+            ,4500);
 
             </script>
           &nbsp;
@@ -193,27 +227,44 @@
             <span id="green">DRUG LAW OFFENSES.</span><br>
             <span id="darkgreen">THIS YEAR.</span> <br>
             <br>
-            <span id="bgreen" >//Every 20 Seconds +1</span>
+            <span id="bgreen" >// +1 / 20 Seconds</span>
 
               <script>
-              var today = new Date();
-              // var birthday = new Date('December 17, 1995 03:24:00');
-              // var birthday = new Date('1995-12-17T03:24:00');
-              // var birthday = new Date(1995, 11, 17);
-              // var birthday = new Date(1995, 11, 17, 3, 24, 0);
-
-              // making algorithm for timestamp to drug data
-
-              // var unixTimestamp = Date.now(); // in milliseconds
-              // unixTimestamp /= 1000;
-              // document.getElementById("bgreen").innerHTML = "//"+unixTimestamp/100000;
-
+              var hundredsa = 670;
+              var thousandsa = 475;
+              var millionsa = 0;
               var numberOf = 475670;
-              window.setInterval(
+
+              setTimeout(function(){window.setInterval(
                 function () {
-                  numberOf = numberOf + 1;
-                  document.getElementById("bgreen").innerHTML = "//"+numberOf;
-              }, 5000);
+
+                  hundredsa = hundredsa+1;
+
+                  if( hundredsa > 999 ){
+                    hundredsa = hundredsa-1000;
+                    thousandsa = thousandsa+1;
+                  }
+                  if( thousandsa > 999 ){
+                    thousandsa = thousandsa-1000;
+                    millionsa = millionsa+1;
+                  }
+
+                  var numa = function(){
+                    if( thousandsa > 99){
+                      return "//"+thousandsa+','+hundredsa;
+                    }
+                    if( thousandsa < 10) {
+                      return "//"+'00'+thousandsa+','+hundredsa;
+                    }
+                    if( thousandsa < 100) {
+                      return "//"+'0'+thousandsa+','+hundredsa;
+                    }
+                  }
+
+                  document.getElementById("bgreen").innerHTML =
+                  numa();
+                }, 20000)}
+                ,4500);
 
               </script>
             <br>
